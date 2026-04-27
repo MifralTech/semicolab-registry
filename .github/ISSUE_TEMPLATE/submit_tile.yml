@@ -1,0 +1,70 @@
+name: Tile Submission
+description: Submit your IP tile for SemiCoLab fabrication
+title: "Tile Submission: "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## SemiCoLab IP Tile Submission
+        Complete all required fields. Make sure your precheck has passed before submitting.
+        Copy the values from `outputs/docs/submit.yaml` in your tile repository.
+
+  - type: input
+    id: tile_name
+    attributes:
+      label: Tile Name
+      placeholder: "32-bit Accumulator"
+    validations:
+      required: true
+
+  - type: input
+    id: tile_author
+    attributes:
+      label: Author
+      placeholder: "Your full name"
+    validations:
+      required: true
+
+  - type: input
+    id: top_module
+    attributes:
+      label: Top Module
+      placeholder: "acc_tile"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      placeholder: "https://github.com/username/ip-my-tile"
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA
+      description: The commit that passed the precheck (first 7 characters is enough).
+      placeholder: "a3f92c1"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: precheck_confirmed
+    attributes:
+      label: Precheck confirmation
+      options:
+        - label: My precheck has passed (connectivity ✅ and synthesis ✅)
+          required: true
+        - label: The information above matches my `outputs/docs/submit.yaml`
+          required: true
