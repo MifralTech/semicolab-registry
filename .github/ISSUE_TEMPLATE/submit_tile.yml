@@ -1,14 +1,22 @@
-name: Tile Submission
-description: Submit your IP tile for SemiCoLab fabrication
+name: Tile Submission (manual)
+description: Manually submit your IP tile — most tiles are submitted automatically by the precheck workflow instead.
 title: "Tile Submission: "
-labels: ["submission"]
+labels: ["submission", "manual"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## SemiCoLab IP Tile Submission
-        Complete all required fields. Make sure your precheck has passed before submitting.
-        Copy the values from `outputs/docs/submit.yaml` in your tile repository.
+        ## SemiCoLab IP Tile Submission — manual fallback
+
+        Most tiles don't need this form: if your repo uses the standard
+        [semicolab-precheck](https://github.com/MifralTech/semicolab-precheck)
+        workflow, a passing verification run opens this submission for you
+        automatically.
+
+        Use this form only if the automated submission didn't happen for
+        some reason. Copy the values below from your tile repo's
+        `results.json` (the output of a real, passing VeriFlow run) —
+        not from memory.
 
   - type: input
     id: tile_name
@@ -30,6 +38,7 @@ body:
     id: top_module
     attributes:
       label: Top Module
+      description: From results.json's "top_module" field.
       placeholder: "acc_tile"
     validations:
       required: true
@@ -54,8 +63,17 @@ body:
     id: commit
     attributes:
       label: Commit SHA
-      description: The commit that passed the precheck (first 7 characters is enough).
+      description: The commit whose results.json shows status "PASS" (first 7 characters is enough).
       placeholder: "a3f92c1"
+    validations:
+      required: true
+
+  - type: input
+    id: results_json_url
+    attributes:
+      label: Link to results.json
+      description: Direct link to the passing results.json in your repo, at the commit above.
+      placeholder: "https://github.com/username/ip-my-tile/blob/a3f92c1/results.json"
     validations:
       required: true
 
@@ -64,7 +82,7 @@ body:
     attributes:
       label: Precheck confirmation
       options:
-        - label: My precheck has passed (connectivity ✅ and synthesis ✅)
+        - label: My results.json shows "status": "PASS"
           required: true
-        - label: The information above matches my `outputs/docs/submit.yaml`
+        - label: The information above matches my results.json
           required: true

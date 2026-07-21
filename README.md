@@ -2,20 +2,28 @@
 
 Central submission registry for SemiCoLab IP tiles.
 
-## How to submit
+## How submissions work
 
-1. Make sure your precheck has passed in your tile repository
-2. Open `outputs/docs/submit.yaml` in your repo
-3. Click the submit button in your `README.md` or go to [Issues → New Issue](../../issues/new/choose)
-4. Fill in the form with the data from your `submit.yaml`
-5. Submit — your tile will be reviewed and assigned a Tile-ID
+Submissions are created **automatically** by the precheck workflow in each
+tile repository (see [semicolab-precheck](https://github.com/MifralTech/semicolab-precheck)),
+right after a real, passing VeriFlow verification run. The submission issue
+is opened with data read directly from that run's `results.json` — nothing
+here is self-reported by the tile author.
+
+If you need to open a submission manually (e.g. the automated step failed,
+or you're submitting from a repo that doesn't use the standard precheck
+workflow), use [Issues → New Issue](../../issues/new/choose) and fill in
+the form — you'll need your tile repo's `results.json` from a passing run
+to complete it.
 
 ## Requirements
 
 - Connectivity check: ✅ PASS
+- Simulation: ✅ PASS (if a testbench is provided)
 - Synthesis: ✅ PASS
-- `tile_config.yaml` fully filled
+- Verified against the `semicolab` interface
 
 ## Status
 
-Submissions are reviewed manually. You will be notified via the Issue when your tile is approved and assigned an ID.
+Submissions are reviewed manually. You will be notified via the Issue when
+your tile is approved and assigned a Tile ID.
